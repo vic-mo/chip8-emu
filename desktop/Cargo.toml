@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 chip_core = { path = "../chip_core" }
+sdl2 = "^0.34.3"

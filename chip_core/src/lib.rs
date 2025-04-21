@@ -1,5 +1,4 @@
 // Standard sprites
-
 const FONTSET_SIZE: usize = 80;
 const FONTSET: [u8; FONTSET_SIZE] = [
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -46,6 +45,15 @@ pub struct Emulator {
 const START_ADDR: u16 = 0x200;
 
 impl Emulator {
+    pub fn get_display(&self) -> &[bool] {
+        &self.screen
+    }
+    pub fn key_pressed(&mut self, key: usize, pressed: bool) {
+        if key < NUMBER_OF_KEYS {
+            self.pressed_keys[key] = pressed;
+        }
+    }
+
     pub fn new() -> Self {
         let mut new_emulator = Self {
             program_counter: START_ADDR,
@@ -105,7 +113,7 @@ impl Emulator {
                 self.screen = [false; SCREEN_WIDTH * SCREEN_HEIGHT];
             }
             // Return from subroutine
-            (0, 0xE, 0, 0xE) => {
+            (0, 0, 0xE, 0xE) => {
                 self.program_counter = self.pop();
             }
             // Jump to address NNN
@@ -395,10 +403,10 @@ impl Emulator {
         self.sound_timer = 0;
         self.load_fontset();
     }
-
-    // pub fn load_program(&mut self, program: &[u8]) {
-    //     for (i, &byte) in program.iter().enumerate() {
-    //         self.ram[START_ADDR as usize + i] = byte;
-    //     }
-    // }
+    /// Load a game into the emulator's memory
+    pub fn load_game(&mut self, data: &[u8]) {
+        for (i, &byte) in data.iter().enumerate() {
+            self.ram[START_ADDR as usize + i] = byte;
+        }
+    }
 }
