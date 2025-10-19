@@ -1,0 +1,10 @@
+# Git attributes for proper handling of files
+
+# Treat WASM as binary
+*.wasm binary
+
+# Treat ROM files as binary
+*.ch8 binary
+
+# Ensure shell scripts have LF line endings
+*.sh text eol=lf

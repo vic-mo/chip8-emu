@@ -1,0 +1,22 @@
+{
+  "name": "chip8-web",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "wasm:build": "./scripts/build-wasm.sh",
+    "prepare:deploy": "./scripts/prepare-deploy.sh",
+    "build:production": "npm run prepare:deploy && npm run build"
+  },
+  "dependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.0.0",
+    "vite-plugin-wasm": "^3.3.0",
+    "vite-plugin-top-level-await": "^1.4.0"
+  }
+}

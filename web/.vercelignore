@@ -1,0 +1,10 @@
+# Vercel ignore - keep it minimal
+# Only ignore what doesn't need to be uploaded
+
+node_modules/
+.DS_Store
+*.local
+
+# Keep these (they're needed for deployment)
+# !src/wasm/
+# !public/roms/
