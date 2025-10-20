@@ -22,7 +22,7 @@
           :displayBuffer="displayBuffer"
           :width="screenWidth"
           :height="screenHeight"
-          :scale="10"
+          :scale="displayScale"
           :isRunning="isRunning"
         />
 
@@ -77,6 +77,7 @@ const displayBuffer = ref([])
 const screenWidth = ref(64)
 const screenHeight = ref(32)
 const pressedKeys = ref(new Set())
+const displayScale = ref(10)
 
 // Keyboard mapping (keyboard key to CHIP-8 hex key)
 const keyMap = {
@@ -149,6 +150,18 @@ const updateDisplay = () => {
   }
 }
 
+// Calculate display scale based on window width
+const calculateDisplayScale = () => {
+  const width = window.innerWidth
+  if (width <= 480) {
+    displayScale.value = 5
+  } else if (width <= 768) {
+    displayScale.value = 7
+  } else {
+    displayScale.value = 10
+  }
+}
+
 // Display update loop
 let displayUpdateInterval = null
 
@@ -176,9 +189,15 @@ onMounted(async () => {
     // Initialize display buffer
     displayBuffer.value = new Array(screenWidth.value * screenHeight.value).fill(0)
 
+    // Calculate initial display scale
+    calculateDisplayScale()
+
     // Add keyboard event listeners
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
+
+    // Add resize listener for responsive scaling
+    window.addEventListener('resize', calculateDisplayScale)
 
     // Start display update loop
     startDisplayUpdate()
@@ -192,6 +211,7 @@ onMounted(async () => {
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown)
   window.removeEventListener('keyup', handleKeyUp)
+  window.removeEventListener('resize', calculateDisplayScale)
   stopDisplayUpdate()
 })
 </script>
@@ -231,6 +251,7 @@ main {
 .container {
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .loading {
@@ -277,6 +298,37 @@ footer a:hover {
 
   .subtitle {
     font-size: 0.9rem;
+  }
+
+  header {
+    padding: 1.5rem 1rem;
+  }
+
+  main {
+    padding: 1.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  header {
+    padding: 1.25rem 0.75rem;
+  }
+
+  main {
+    padding: 1rem 0.5rem;
+  }
+
+  footer {
+    padding: 1rem;
+    font-size: 0.85rem;
   }
 }
 </style>

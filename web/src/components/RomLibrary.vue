@@ -109,6 +109,7 @@ onMounted(async () => {
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 h2 {
@@ -174,6 +175,8 @@ h2 {
   gap: 0.5rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid #444;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab {
@@ -187,6 +190,8 @@ h2 {
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
   transition: all 0.2s;
+  white-space: nowrap;
+  min-height: 44px;
 }
 
 .tab:hover {
@@ -206,10 +211,14 @@ h2 {
 }
 
 .rom-item {
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
   border-bottom: 1px solid #333;
   cursor: pointer;
   transition: background 0.2s;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .rom-item:last-child {
@@ -260,5 +269,73 @@ h2 {
 
 .rom-list::-webkit-scrollbar-thumb:hover {
   background: #666;
+}
+
+@media (max-width: 768px) {
+  .rom-library {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .rom-list {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rom-library {
+    padding: 0.75rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .selected-rom-info {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .selected-rom-info .label {
+    font-size: 0.85rem;
+  }
+
+  .selected-rom-info .rom-title {
+    font-size: 0.9rem;
+  }
+
+  .search-input {
+    padding: 0.625rem;
+    font-size: 0.95rem;
+  }
+
+  .tab {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .rom-list {
+    max-height: 250px;
+  }
+
+  .rom-item {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .rom-name {
+    font-size: 0.95rem;
+  }
+
+  .rom-category {
+    font-size: 0.8rem;
+  }
 }
 </style>

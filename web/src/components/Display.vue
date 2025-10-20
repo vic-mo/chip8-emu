@@ -109,5 +109,19 @@ watch(() => props.displayBuffer, () => {
   border-radius: 4px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .display-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .display-container {
+    padding: 0.75rem;
+  }
 }
 </style>

@@ -54,6 +54,7 @@ const keypadLayout = [
   background: #2a2a2a;
   padding: 1.5rem;
   border-radius: 8px;
+  width: 100%;
 }
 
 h3 {
@@ -72,7 +73,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
-  max-width: 280px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -84,6 +85,11 @@ h3 {
   text-align: center;
   transition: all 0.15s;
   cursor: default;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .key.active {
@@ -108,5 +114,46 @@ h3 {
 
 .key.active .keyboard-key {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .keypad {
+    padding: 1rem;
+  }
+
+  .keypad-grid {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .keypad {
+    padding: 0.75rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .keypad-info {
+    font-size: 0.85rem;
+  }
+
+  .keypad-grid {
+    gap: 0.375rem;
+  }
+
+  .key {
+    padding: 0.5rem;
+    min-height: 50px;
+  }
+
+  .chip8-key {
+    font-size: 1rem;
+  }
+
+  .keyboard-key {
+    font-size: 0.7rem;
+  }
 }
 </style>

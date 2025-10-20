@@ -83,6 +83,8 @@ const statusText = computed(() => {
   cursor: pointer;
   transition: all 0.2s;
   font-size: 1rem;
+  min-height: 44px;
+  min-width: 80px;
 }
 
 .btn:disabled {
@@ -174,5 +176,43 @@ const statusText = computed(() => {
 .status-indicator.active {
   background: #4caf50;
   box-shadow: 0 0 8px #4caf50;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    padding: 1rem;
+  }
+
+  .button-group {
+    gap: 0.5rem;
+  }
+
+  .btn {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls {
+    padding: 0.75rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1rem;
+  }
+
+  .speed-control {
+    margin-bottom: 1rem;
+  }
+
+  .speed-control input[type="range"] {
+    max-width: 100%;
+  }
 }
 </style>

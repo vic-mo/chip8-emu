@@ -71,6 +71,7 @@ const handleFileSelect = async (event) => {
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .mode-toggle {
@@ -92,6 +93,8 @@ const handleFileSelect = async (event) => {
   cursor: pointer;
   font-weight: 500;
   transition: all 0.2s;
+  min-height: 44px;
+  font-size: 1rem;
 }
 
 .toggle-btn:hover {
@@ -142,5 +145,50 @@ input[type="file"] {
   color: white;
   border-radius: 6px;
   font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .rom-selector {
+    padding: 1rem;
+  }
+
+  .upload-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .file-label {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .rom-selector {
+    padding: 0.75rem;
+  }
+
+  .mode-toggle {
+    margin-bottom: 1rem;
+  }
+
+  .toggle-btn {
+    padding: 0.625rem;
+    font-size: 0.95rem;
+  }
+
+  .upload-section h2 {
+    font-size: 1rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .file-label {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .error {
+    font-size: 0.85rem;
+    padding: 0.625rem;
+  }
 }
 </style>
